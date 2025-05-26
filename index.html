@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Ritualistic</title>
-        <link href="style.css" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
-      <style>
-        body, h1, button {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Ritualistic</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <style>
+      body, h1, button {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-          background-color: black;
-          color: white;
-          height: 100vh;
-          display: flex;
-          align-items: flex-start;
-          justify-content: center;
-          padding-top: 60px;
-          font-family: 'Nosifer', cursive;
-        }
+      body {
+        background-color: #000000;
+        color: white;
+        height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 60px;
+        font-family: 'Nosifer', cursive;
+      }
 
       .main-container {
         display: flex;
         align-items: flex-start;
         gap: 60px;
-        }
-      
-        .text-section {
+      }
+
+      .text-section {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -42,27 +42,54 @@
         font-size: 64px;
         text-transform: uppercase;
         letter-spacing: 4px;
-        font-family:'Nosifer', cursive;
-        
+        font-family: 'Nosifer', cursive;
       }
 
-      </style>
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .menu-button {
+        font-size: 36px;
+        padding: 20px 40px;
+        background-color: transparent;
+        color: red;
+        border: 2px solid red;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: 'Nosifer', cursive;
+      }
+
+      .menu-button:hover {
+        background-color: red;
+        color: black;
+      }
+
+      .menu-image {
+        width: 500px;
+        height: auto;
+        border: 2px solid #900;
+       box-shadow: 0 0 20px red;
+}
       
-      
-      
-      </head>
-<body>
-
-
-
-
-  <div class="button-container">
-      <button class="menu-button" onclick="location.href='/game.html'">Start</button>
-      <button class="menu-button" onclick="location.href='/instructions.html'">Instructions</button>
-       <button class="menu-button" onclick="location.href='/credits.html'">credits</button>
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="text-section">
+        <div class="title">Ritualistic</div>
+        <div class="button-container">
+          <button class="menu-button" onclick="location.href='/game.html'">Start</button>
+          <button class="menu-button" onclick="location.href='/instructions.html'">Instructions</button>
+          <button class="menu-button" onclick="location.href='/credits.html'">Credits</button>
+        </div>
+      </div>
+      <img src="pentagram_PNG11.png" alt="pentagram" class="menu-image" />
     </div>
-
-</body>
-
-
+  </body>
 </html>
