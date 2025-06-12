@@ -6,15 +6,86 @@
     <title>Ritualistic</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
-    
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: white;
+        font-family: 'Nosifer', cursive;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 40px;
+        box-sizing: border-box;
+        position: relative;
+        text-align: center;
+        gap: 40px;
+      }
 
+  .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 20px;
+        padding: 10px 20px;
+        background-color: transparent;
+        color: red;
+        border: 2px solid red;
+        cursor: pointer;
+        font-family: 'Nosifer', cursive;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s, color 0.3s;
+      }
 
+  .back-button:hover {
+        background-color: red;
+        color: black;
+      }
+
+  .credits-text {
+        max-width: 700px;
+      }
+
+  .credits-text h1 {
+        font-size: 60px;
+        color: red;
+        margin-bottom: 20px;
+      }
+
+  .credits-text p {
+        font-size: 24px;
+        line-height: 1.5;
+        color: #ccc;
+      }
+
+  .cross-image {
+  max-width: 200px;
+  height: auto;
+  transform: rotate(180deg);
+  margin-left: 200px; 
+}
+
+      .cross-container {
+  margin-left: auto; 
+  padding-right: 300px; 
+}
+    </style>
+    </style>
 
 </head>
   
-  
-     <body>
-    
+  <body>
+    <button class="back-button" onclick="location.href='index.html'">Back</button>
+    <div class="credits-text">
+    <h1> Credits </h1>
+    <p> Developed by Luke </p>
+    <p> Models: </p>
+    </div>
+       <img src="zLsbWT-crucifix-american-red-cross-christian-cross-clip-art.png" alt="Cross" class="cross-image" />
 
 
   </body>
