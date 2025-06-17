@@ -9,21 +9,103 @@
         <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
         <script src="https://rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script> 
       </head>
-<body>
+  <body>
+    <a-scene>
 
+      <!-- Ground -->
+      <a-plane rotation="-90 0 0" width="200" height="200" color="#013220" shadow></a-plane>
 
+      <a-entity id="player" movement-controls position="0 1.6 2" rotation="0 0 0">
+  <a-camera 
+    wasd-controls-enabled="true" 
+    look-controls="pointerLockEnabled: true">
+    <a-cursor 
+      color="white"
+      fuse="false"
+      rayOrigin="mouse"
+      material="shader: flat"
+      position="0 0 -1">
+    </a-cursor>
+    <a-entity 
+      light="type: spot; intensity: 2; angle: 20; penumbra: 0.3; color: #ffffff; distance: 25"
+      position="0 0 0" 
+      rotation="-10 0 0">
+    </a-entity>
+  </a-camera>
+</a-entity>
 
-  <a-scene>
+      <!-- Pentagram -->
+      <a-ring position="0 0 -2" rotation="-90 0 0" radius-inner="0.4" radius-outer="0.5" color="red"></a-ring>
 
+      <!-- Key -->
+      <a-box id="key" 
+             position="10 0.2 -15" 
+             depth="0.1" height="0.05" width="0.3" 
+             color="gold" 
+             interact-with-key>
+      </a-box>
 
+      <!-- Car -->
+      <a-box id="car" 
+             position="-20 0.5 -40" 
+             depth="1.5" height="0.75" width="2.5" 
+             color="#222" 
+             interact-with-car>
+      </a-box>
 
+      <!-- Static Trees -->
+      <a-cylinder position="5 1 -10" radius="0.3" height="2" color="#2b2b2b"></a-cylinder>
+      <a-sphere position="5 2.5 -10" radius="1" color="#0a0"></a-sphere>
 
+      <a-cylinder position="-8 1 -12" radius="0.3" height="2" color="#2b2b2b"></a-cylinder>
+      <a-sphere position="-8 2.5 -12" radius="1" color="#0a0"></a-sphere>
 
-</a-scene>
+      <a-cylinder position="12 1 -25" radius="0.3" height="2" color="#2b2b2b"></a-cylinder>
+      <a-sphere position="12 2.5 -25" radius="1" color="#0a0"></a-sphere>
 
-  
+      <a-cylinder position="-15 1 -35" radius="0.3" height="2" color="#2b2b2b"></a-cylinder>
+      <a-sphere position="-15 2.5 -35" radius="1" color="#0a0"></a-sphere>
 
-</body>
+      <!-- Message -->
+      <a-text id="message" value="Find the Key..." position="0 2 -1" align="center" color="white"></a-text>
+      
+      <!-- Sky -->
+      <a-sky color="#111"></a-sky>
+    </a-scene>
 
+    <!-- Game Script -->
+    <script>
+      let hasKey = false;
+      window.ePressed = false;
 
+      window.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === 'e') window.ePressed = true;
+      });
+      window.addEventListener('keyup', (e) => {
+        if (e.key.toLowerCase() === 'e') window.ePressed = false;
+      });
+
+      AFRAME.registerComponent('interact-with-key', {
+        tick: function () {
+          const player = document.querySelector('#player');
+          const dist = this.el.object3D.position.distanceTo(player.object3D.position);
+          if (dist < 2 && !hasKey && window.ePressed) {
+            hasKey = true;
+            this.el.setAttribute('visible', false);
+            document.querySelector('#message').setAttribute('value', 'Key collected!');
+          }
+        }
+      });
+
+      AFRAME.registerComponent('interact-with-car', {
+        tick: function () {
+          const player = document.querySelector('#player');
+          const dist = this.el.object3D.position.distanceTo(player.object3D.position);
+          if (dist < 3 && hasKey && window.ePressed) {
+            document.querySelector('#message').setAttribute('value', 'You escaped!');
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
