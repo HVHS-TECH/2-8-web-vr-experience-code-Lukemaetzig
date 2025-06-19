@@ -1,59 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Ritualistic</title>
-        <link href="style.css" rel="stylesheet" type="text/css" />
-        <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
-        <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
-        <script src="https://rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script> 
-      </head>
+  <head>
+    <meta charset="utf-8">
+    <title>Ritualistic</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  </head>
   <body>
-    <a-scene>
+    <a-scene cursor="rayOrigin: mouse">
 
-      <!-- Ground -->
+     
       <a-plane rotation="-90 0 0" width="200" height="200" color="#013220" shadow></a-plane>
 
-      <a-entity id="player" movement-controls position="0 1.6 2" rotation="0 0 0">
-  <a-camera 
-    wasd-controls-enabled="true" 
-    look-controls="pointerLockEnabled: true">
-    <a-cursor 
-      color="white"
-      fuse="false"
-      rayOrigin="mouse"
-      material="shader: flat"
-      position="0 0 -1">
-    </a-cursor>
-    <a-entity 
-      light="type: spot; intensity: 2; angle: 20; penumbra: 0.3; color: #ffffff; distance: 25"
-      position="0 0 0" 
-      rotation="-10 0 0">
-    </a-entity>
-  </a-camera>
-</a-entity>
+     
+      <a-entity id="player" position="0 1.6 5">
+        <a-camera>
+          <a-cursor 
+            rayOrigin="mouse" 
+            fuse="false" 
+            material="shader: flat; color: white" 
+            position="0 0 -1">
+          </a-cursor>
+          <a-entity 
+            light="type: spot; intensity: 2; angle: 20; penumbra: 0.3; color: #ffffff; distance: 25"
+            position="0 0 0" 
+            rotation="-10 0 0">
+          </a-entity>
+        </a-camera>
+      </a-entity>
 
-      <!-- Pentagram -->
-      <a-ring position="0 0 -2" rotation="-90 0 0" radius-inner="0.4" radius-outer="0.5" color="red"></a-ring>
+      <a-assests>
+        <a-asset-item id
+      </a-assests>
+      <a-ring 
+      position="0 0 -2" 
+      rotation="-90 0 0" 
+      radius-inner="0.4" 
+      radius-outer="0.5" 
+      color="red">
+    </a-ring>
 
-      <!-- Key -->
+      
       <a-box id="key" 
              position="10 0.2 -15" 
              depth="0.1" height="0.05" width="0.3" 
              color="gold" 
-             interact-with-key>
+             class="clickable">
       </a-box>
 
-      <!-- Car -->
       <a-box id="car" 
              position="-20 0.5 -40" 
              depth="1.5" height="0.75" width="2.5" 
              color="#222" 
-             interact-with-car>
+             class="clickable">
       </a-box>
 
-      <!-- Static Trees -->
+      
       <a-cylinder position="5 1 -10" radius="0.3" height="2" color="#2b2b2b"></a-cylinder>
       <a-sphere position="5 2.5 -10" radius="1" color="#0a0"></a-sphere>
 
@@ -66,46 +67,38 @@
       <a-cylinder position="-15 1 -35" radius="0.3" height="2" color="#2b2b2b"></a-cylinder>
       <a-sphere position="-15 2.5 -35" radius="1" color="#0a0"></a-sphere>
 
-      <!-- Message -->
+     
       <a-text id="message" value="Find the Key..." position="0 2 -1" align="center" color="white"></a-text>
+
       
-      <!-- Sky -->
       <a-sky color="#111"></a-sky>
     </a-scene>
 
-    <!-- Game Script -->
-    <script>
-      let hasKey = false;
-      window.ePressed = false;
+<script>
+  let hasKey = false;
 
-      window.addEventListener('keydown', (e) => {
-        if (e.key.toLowerCase() === 'e') window.ePressed = true;
-      });
-      window.addEventListener('keyup', (e) => {
-        if (e.key.toLowerCase() === 'e') window.ePressed = false;
-      });
+  const key = document.querySelector('#key');
+  const car = document.querySelector('#car');
+  const message = document.querySelector('#message');
 
-      AFRAME.registerComponent('interact-with-key', {
-        tick: function () {
-          const player = document.querySelector('#player');
-          const dist = this.el.object3D.position.distanceTo(player.object3D.position);
-          if (dist < 2 && !hasKey && window.ePressed) {
-            hasKey = true;
-            this.el.setAttribute('visible', false);
-            document.querySelector('#message').setAttribute('value', 'Key collected!');
-          }
-        }
-      });
+  key.addEventListener('click', () => {
+    if (!hasKey && key.getAttribute('visible') !== false) {
+      hasKey = true;
+      key.setAttribute('visible', false);
+      console.log('value', 'Key collected!');
+    }
+  });
 
-      AFRAME.registerComponent('interact-with-car', {
-        tick: function () {
-          const player = document.querySelector('#player');
-          const dist = this.el.object3D.position.distanceTo(player.object3D.position);
-          if (dist < 3 && hasKey && window.ePressed) {
-            document.querySelector('#message').setAttribute('value', 'You escaped!');
-          }
-        }
-      });
-    </script>
+  car.addEventListener('click', () => {
+    if (hasKey) {
+      message.setAttribute('value', 'You escaped!');
+      setTimeout(() => {
+        window.location.href = 'endScreen.html';
+      }, 1000); 
+    } else {
+      console.log('value', 'You need the key!');
+    }
+  });
+</script>
   </body>
 </html>
