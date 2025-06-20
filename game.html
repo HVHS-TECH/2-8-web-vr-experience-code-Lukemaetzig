@@ -12,7 +12,7 @@
       <a-plane rotation="-90 0 0" width="200" height="200" color="#013220" shadow></a-plane>
 
      
-      <a-entity id="player" position="0 1.6 5">
+      <a-entity id="player" position="0 1.6 10">
         <a-camera>
           <a-cursor 
             rayOrigin="mouse" 
@@ -29,27 +29,31 @@
       </a-entity>
 
       <a-assests>
-        <a-asset-item id
+        <a-asset-item id="keyModel" src="/models/key.glb"></a-asset-item>
+        <a-asset-item id="carModel" src="/models/the-red-car.glb"></a-asset-item>
+        <a-asset-item id="pentagramModel" src="/models/pentagram.glb"></a-asset-item>
       </a-assests>
-      <a-ring 
+      
+      
+      
+      <a-entity id="pentagram" 
+      gltf-model="#pentagramModel"
       position="0 0 -2" 
-      rotation="-90 0 0" 
-      radius-inner="0.4" 
-      radius-outer="0.5" 
-      color="red">
-    </a-ring>
+      rotation="0 0 0" 
+      scale="0.1 0.1 0.1">
+      </a-entity>
 
       
-      <a-box id="key" 
-             position="10 0.2 -15" 
-             depth="0.1" height="0.05" width="0.3" 
-             color="gold" 
-             class="clickable">
-      </a-box>
-
+      <a-entity id="key"
+         gltf-model="#keyModel"
+         position="10 0.2 -15"
+         scale="0.001 0.001 0.001"
+         class="clickable">
+      </a-entity>
       <a-box id="car" 
+      gltf-model="#carModel"
              position="-20 0.5 -40" 
-             depth="1.5" height="0.75" width="2.5" 
+             scale="2.5 2.5 2.5"
              color="#222" 
              class="clickable">
       </a-box>
