@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>You Escaped!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: white;
+      font-family: 'Nosifer', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .end-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+    }
+
+    .symbol-img {
+      width: 300px;
+      height: auto;
+    }
+
+    .content {
+      text-align: center;
+    }
+
+    .title {
+      font-size: 64px;
+      color: white;
+      text-shadow: 0 0 10px red;
+      margin-bottom: 40px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .menu-button {
+      font-size: 36px;
+      padding: 15px 40px;
+      background-color: transparent;
+      color: red;
+      border: 3px solid red;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      letter-spacing: 2px;
+      font-family: 'Nosifer', cursive;
+    }
+
+    .menu-button:hover {
+      background-color: red;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="end-container">
+    <img src="/Pictures/Ritualistic-Symbol-PNG.png" alt="symbol" class="symbol-img" />
+
+    <div class="content">
+      <div class="title">You Escaped!</div>
+      <div class="button-container">
+        <button class="menu-button" onclick="location.href='index.html'">Home</button>
+        <button class="menu-button" onclick="location.href='credits.html'">Credits</button>
+      </div>
+    </div>
+
+    <img src="/Pictures/Ritualistic-Symbol-PNG.png" alt="symbol" class="symbol-img" />
+  </div>
+</body>
+</html>
